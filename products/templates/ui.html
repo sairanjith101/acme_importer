@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Acme Product Importer</title>
+  <style>
+    body{font-family: Arial, sans-serif; margin:20px}
+    section{margin-bottom:30px}
+    .card{border:1px solid #ddd;padding:12px;margin:8px 0;border-radius:6px}
+    input, select, button, textarea{padding:6px;margin:4px}
+  </style>
+</head>
+<body>
+  <h1>Acme Product Importer — Demo UI</h1>
+
+  <section>
+    <h2>Upload CSV (supports large files)</h2>
+    <input type="file" id="csvfile" accept=".csv" />
+    <button id="uploadBtn">Upload</button>
+    <div id="uploadStatus"></div>
+    <progress id="progressBar" value="0" max="100" style="width:60%"></progress>
+    <div id="uploadMeta"></div>
+  </section>
+
+  <section>
+    <h2>Products</h2>
+    <div>
+      Search: <input type="text" id="search" placeholder="sku/name" />
+      Sort by:
+      <select id="order">
+        <option value="-updated_at">Newest</option>
+        <option value="sku">SKU asc</option>
+        <option value="-sku">SKU desc</option>
+        <option value="name">Name asc</option>
+        <option value="-price">Price desc</option>
+      </select>
+      <button id="refreshList">Refresh</button>
+      <button id="openCreate">Create Product</button>
+      <button id="bulkDelete">Delete All (async)</button>
+    </div>
+    <div id="products"></div>
+  </section>
+
+  <section>
+    <h2>Webhooks</h2>
+    <button id="newWebhookBtn">Add Webhook</button>
+    <div id="webhookArea"></div>
+  </section>
+
+  <!-- Create/Edit modal (simple) -->
+  <div id="modal" style="display:none;position:fixed;left:20%;top:10%;width:60%;background:#fff;border:1px solid #ccc;padding:12px;box-shadow:0 4px 20px rgba(0,0,0,0.2);">
+    <h3 id="modalTitle">Create Product</h3>
+    SKU: <input id="m_sku" /><br>
+    Name: <input id="m_name" /><br>
+    Description: <textarea id="m_desc"></textarea><br>
+    Price: <input id="m_price" type="number" step="0.01" /><br>
+    <button id="saveProduct">Save</button>
+    <button id="closeModal">Close</button>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
